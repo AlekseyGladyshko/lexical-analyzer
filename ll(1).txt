@@ -1,0 +1,34 @@
+PROGRAM ::= <block> \!
+<block> ::= <constants> <vars> <procedures> <statement>
+<constants> ::= const <ident> \= <number> <add_const> \;
+<constants> ::= ~
+<add_const> ::= \, <ident> \= <number> <add_const>
+<add_const> ::= ~
+<vars> ::= var <ident> <add_var> \;
+<add_var> ::= \, <ident> <add_var>
+<add_var> ::= ~
+<procedures> ::= procedure <ident> \;
+<procedures> ::= procedure <ident> \; <block> \; <procedures>
+<procedures> ::= ~
+<ident> ::= .+
+<number> ::= \d+
+<statement> ::= <ident> \:\= <expression>
+<statement> ::= call <ident>
+<statement> ::= \? <ident>
+<statement> ::= \! <expression>
+<statement> ::= begin <statement> <add_statement> end
+<add_statement> ::= \; <statement>
+<statement> ::= if <condition> then <statement>
+<statement> ::= while <condition> do <statement>
+<statement> ::= ~
+<condition> ::= odd <expression>
+<condition> ::= <expression> (\=|\#|\<|\<\=|\>|\>\=) <expression>
+<expression> ::= (\+|\-)? <term> <add_term>
+<term> ::= <factor> <add_factor>
+<add_term> ::= (\+|\-) <term> <add_term>
+<add_term> ::= ~
+<factor> ::= <ident>
+<factor> ::= <number>
+<factor> ::= \( <expression> \)
+<add_factor> ::= (\*|\/) <factor> <add_factor>
+<add_factor> ::= ~
